@@ -1,0 +1,24 @@
+PODS:
+  - Alamofire (5.4.1)
+  - SwiftyJSON (5.0.1)
+  - ToastUI (2.0.0)
+
+DEPENDENCIES:
+  - Alamofire (~> 5.4.1)
+  - SwiftyJSON (~> 5.0.1)
+  - ToastUI
+
+SPEC REPOS:
+  trunk:
+    - Alamofire
+    - SwiftyJSON
+    - ToastUI
+
+SPEC CHECKSUMS:
+  Alamofire: 2291f7d21ca607c491dd17642e5d40fdcda0e65c
+  SwiftyJSON: 2f33a42c6fbc52764d96f13368585094bfd8aa5e
+  ToastUI: 391eb9a1cc15e7ef4b79ee112e4a0b969259154f
+
+PODFILE CHECKSUM: 4c8cadbd716ce8aebcdea15316d18ab453460b6e
+
+COCOAPODS: 1.10.1
