@@ -12,8 +12,8 @@ import SwiftyJSON
 struct Api {
   
     static var loading = false
-    static let url = ""
-    static let apikey = ""
+    static let url = "https://luque21.duckdns.org:4081/notas/"
+    static let apikey = "idisjfsd8fy84ropwqm,fycg76xz<cOIHSAIjssjjjjs23NDJFEQUYR**3214"
     static let headers: HTTPHeaders = [
         "apikey": apikey,
     ]
