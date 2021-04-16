@@ -12,6 +12,8 @@ import SwiftyJSON
 struct Api {
   
     static var loading = false
+    static let url = ""
+    static let apikey = ""
     static let headers: HTTPHeaders = [
         "apikey": apikey,
     ]
