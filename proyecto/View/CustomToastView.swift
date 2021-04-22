@@ -15,6 +15,8 @@ struct CustomToastView: View {
     var positiveButton: String
     @Binding var textField: String
     @Binding var showingToast: Bool
+    @Binding var edit: Bool
+    var isSharing: Bool
     var start: () -> Void
     
     var body: some View {
@@ -30,7 +32,10 @@ struct CustomToastView: View {
                         .border(Color(UIColor.separator))
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                         .padding(.vertical, 5)
-
+                    if isSharing {
+                        Toggle("¿Desea que el usuario pueda editar la nota?", isOn: $edit)
+                            .toggleStyle(SwitchToggleStyle(tint: .orange))
+                    }
                     Divider()
                 HStack{
                     Spacer()

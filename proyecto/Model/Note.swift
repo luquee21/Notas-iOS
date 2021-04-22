@@ -18,9 +18,11 @@ struct Note: Identifiable, Codable, Equatable {
      var shared: Int
      var editable: Int?
      var modified_by: String
+     var users_share_note: Array<User>? = []
+     var images: Array<String>?
     
     static func == (ln: Note, rn: Note) -> Bool {
             return ln.id == rn.id
         }
-    
+
 }

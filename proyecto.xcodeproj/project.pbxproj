@@ -7,17 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2203287E262978D600313D60 /* SharedUsersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2203287D262978D600313D60 /* SharedUsersView.swift */; };
 		221626E2260CBC2D008731D8 /* ChangePasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221626E1260CBC2D008731D8 /* ChangePasswordView.swift */; };
-		223C912E261C559B0076086B /* UserAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223C912D261C559B0076086B /* UserAuth.swift */; };
+		221D245B2630069200F7C58E /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221D245A2630069200F7C58E /* ImagePicker.swift */; };
+		222A83C926302E1400DE7FA6 /* ImagesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222A83C826302E1400DE7FA6 /* ImagesView.swift */; };
+		223C912E261C559B0076086B /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223C912D261C559B0076086B /* UserRepository.swift */; };
 		223E9493261DC7B7001A4E90 /* RowNoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223E9492261DC7B7001A4E90 /* RowNoteView.swift */; };
 		223E9496261DC863001A4E90 /* ListMyNotesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223E9495261DC863001A4E90 /* ListMyNotesView.swift */; };
 		228B6F94261B1E02008DBE5A /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228B6F93261B1E02008DBE5A /* View.swift */; };
+		22A283B62630169300FFE617 /* Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A283B52630169300FFE617 /* Keyboard.swift */; };
 		22BA823D260B652600111A85 /* Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BA823C260B652600111A85 /* Api.swift */; };
 		22BA8240260B66F800111A85 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BA823F260B66F800111A85 /* ProfileView.swift */; };
-		22BA8243260B67AD00111A85 /* CircleImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BA8242260B67AD00111A85 /* CircleImage.swift */; };
 		22BA8246260B76D200111A85 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BA8245260B76D200111A85 /* MainView.swift */; };
-		22D296F4261DBCD5004E2A03 /* NoteRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D296F3261DBCD5004E2A03 /* NoteRepository.swift */; };
 		22D8DD4726245D4800C45ED6 /* ListSharedNotesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D8DD4626245D4800C45ED6 /* ListSharedNotesView.swift */; };
+		22DAC8C326315D0800D7816A /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DAC8C226315D0800D7816A /* Date.swift */; };
+		22DAC8CA2631698B00D7816A /* DateAgo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DAC8C92631698B00D7816A /* DateAgo.swift */; };
 		22E24E802628553B00B04BDA /* CustomToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E24E7F2628553B00B04BDA /* CustomToastView.swift */; };
 		22E7B3AD2609CB38003C6020 /* proyectoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E7B3AC2609CB38003C6020 /* proyectoApp.swift */; };
 		22E7B3AF2609CB38003C6020 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E7B3AE2609CB38003C6020 /* LoginView.swift */; };
@@ -28,21 +32,26 @@
 		22E7B3E8260A0991003C6020 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E7B3E7260A0991003C6020 /* User.swift */; };
 		22E7B3F7260A0F32003C6020 /* SplashScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 22E7B3F6260A0F32003C6020 /* SplashScreen.storyboard */; };
 		22E7B3FE260A17B0003C6020 /* NoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E7B3FD260A17B0003C6020 /* NoteView.swift */; };
+		22EE5644262EC164004BB6AC /* Refresher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22EE5643262EC164004BB6AC /* Refresher.swift */; };
 		2C2FFAC883CD706812D26490 /* Pods_proyecto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC293A68E8F06111685E2BF6 /* Pods_proyecto.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2203287D262978D600313D60 /* SharedUsersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedUsersView.swift; sourceTree = "<group>"; };
 		221626E1260CBC2D008731D8 /* ChangePasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordView.swift; sourceTree = "<group>"; };
-		223C912D261C559B0076086B /* UserAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAuth.swift; sourceTree = "<group>"; };
+		221D245A2630069200F7C58E /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		222A83C826302E1400DE7FA6 /* ImagesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesView.swift; sourceTree = "<group>"; };
+		223C912D261C559B0076086B /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
 		223E9492261DC7B7001A4E90 /* RowNoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RowNoteView.swift; sourceTree = "<group>"; };
 		223E9495261DC863001A4E90 /* ListMyNotesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListMyNotesView.swift; sourceTree = "<group>"; };
 		228B6F93261B1E02008DBE5A /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
+		22A283B52630169300FFE617 /* Keyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keyboard.swift; sourceTree = "<group>"; };
 		22BA823C260B652600111A85 /* Api.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Api.swift; sourceTree = "<group>"; };
 		22BA823F260B66F800111A85 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
-		22BA8242260B67AD00111A85 /* CircleImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleImage.swift; sourceTree = "<group>"; };
 		22BA8245260B76D200111A85 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
-		22D296F3261DBCD5004E2A03 /* NoteRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteRepository.swift; sourceTree = "<group>"; };
 		22D8DD4626245D4800C45ED6 /* ListSharedNotesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListSharedNotesView.swift; sourceTree = "<group>"; };
+		22DAC8C226315D0800D7816A /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
+		22DAC8C92631698B00D7816A /* DateAgo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateAgo.swift; sourceTree = "<group>"; };
 		22E24E7F2628553B00B04BDA /* CustomToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomToastView.swift; sourceTree = "<group>"; };
 		22E7B3A92609CB38003C6020 /* proyecto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = proyecto.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		22E7B3AC2609CB38003C6020 /* proyectoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = proyectoApp.swift; sourceTree = "<group>"; };
@@ -55,6 +64,7 @@
 		22E7B3E7260A0991003C6020 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		22E7B3F6260A0F32003C6020 /* SplashScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SplashScreen.storyboard; sourceTree = "<group>"; };
 		22E7B3FD260A17B0003C6020 /* NoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteView.swift; sourceTree = "<group>"; };
+		22EE5643262EC164004BB6AC /* Refresher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Refresher.swift; sourceTree = "<group>"; };
 		721972D1CDD292A8BE7887AF /* Pods-proyecto.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-proyecto.debug.xcconfig"; path = "Target Support Files/Pods-proyecto/Pods-proyecto.debug.xcconfig"; sourceTree = "<group>"; };
 		BC293A68E8F06111685E2BF6 /* Pods_proyecto.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_proyecto.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD0A019C8F987F82AC0122D1 /* Pods-proyecto.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-proyecto.release.xcconfig"; path = "Target Support Files/Pods-proyecto/Pods-proyecto.release.xcconfig"; sourceTree = "<group>"; };
@@ -76,8 +86,20 @@
 			isa = PBXGroup;
 			children = (
 				228B6F93261B1E02008DBE5A /* View.swift */,
+				22A283B52630169300FFE617 /* Keyboard.swift */,
+				22DAC8C226315D0800D7816A /* Date.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		22A283B826301A8F00FFE617 /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				22EE5643262EC164004BB6AC /* Refresher.swift */,
+				221D245A2630069200F7C58E /* ImagePicker.swift */,
+				22DAC8C92631698B00D7816A /* DateAgo.swift */,
+			);
+			path = Tools;
 			sourceTree = "<group>";
 		};
 		22BA823B260B651800111A85 /* Api */ = {
@@ -110,6 +132,7 @@
 		22E7B3AB2609CB38003C6020 /* proyecto */ = {
 			isa = PBXGroup;
 			children = (
+				22A283B826301A8F00FFE617 /* Tools */,
 				228B6F92261B1DEE008DBE5A /* Extension */,
 				22BA823B260B651800111A85 /* Api */,
 				22E7B3E2260A07E4003C6020 /* Resources */,
@@ -135,8 +158,7 @@
 			children = (
 				22E7B3E3260A083C003C6020 /* Note.swift */,
 				22E7B3E7260A0991003C6020 /* User.swift */,
-				223C912D261C559B0076086B /* UserAuth.swift */,
-				22D296F3261DBCD5004E2A03 /* NoteRepository.swift */,
+				223C912D261C559B0076086B /* UserRepository.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -148,13 +170,14 @@
 				22E7B3AE2609CB38003C6020 /* LoginView.swift */,
 				22E7B3FD260A17B0003C6020 /* NoteView.swift */,
 				22BA823F260B66F800111A85 /* ProfileView.swift */,
-				22BA8242260B67AD00111A85 /* CircleImage.swift */,
 				22BA8245260B76D200111A85 /* MainView.swift */,
 				221626E1260CBC2D008731D8 /* ChangePasswordView.swift */,
 				223E9492261DC7B7001A4E90 /* RowNoteView.swift */,
 				223E9495261DC863001A4E90 /* ListMyNotesView.swift */,
 				22D8DD4626245D4800C45ED6 /* ListSharedNotesView.swift */,
 				22E24E7F2628553B00B04BDA /* CustomToastView.swift */,
+				2203287D262978D600313D60 /* SharedUsersView.swift */,
+				222A83C826302E1400DE7FA6 /* ImagesView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -298,22 +321,27 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				22DAC8CA2631698B00D7816A /* DateAgo.swift in Sources */,
 				228B6F94261B1E02008DBE5A /* View.swift in Sources */,
 				22BA8240260B66F800111A85 /* ProfileView.swift in Sources */,
 				221626E2260CBC2D008731D8 /* ChangePasswordView.swift in Sources */,
-				22D296F4261DBCD5004E2A03 /* NoteRepository.swift in Sources */,
 				22E7B3E4260A083C003C6020 /* Note.swift in Sources */,
 				22E7B3C52609E3D9003C6020 /* SignInView.swift in Sources */,
 				223E9496261DC863001A4E90 /* ListMyNotesView.swift in Sources */,
 				223E9493261DC7B7001A4E90 /* RowNoteView.swift in Sources */,
 				22BA8246260B76D200111A85 /* MainView.swift in Sources */,
+				2203287E262978D600313D60 /* SharedUsersView.swift in Sources */,
 				22E24E802628553B00B04BDA /* CustomToastView.swift in Sources */,
-				223C912E261C559B0076086B /* UserAuth.swift in Sources */,
+				223C912E261C559B0076086B /* UserRepository.swift in Sources */,
 				22E7B3FE260A17B0003C6020 /* NoteView.swift in Sources */,
+				22EE5644262EC164004BB6AC /* Refresher.swift in Sources */,
 				22E7B3E8260A0991003C6020 /* User.swift in Sources */,
-				22BA8243260B67AD00111A85 /* CircleImage.swift in Sources */,
 				22E7B3AF2609CB38003C6020 /* LoginView.swift in Sources */,
+				22A283B62630169300FFE617 /* Keyboard.swift in Sources */,
 				22BA823D260B652600111A85 /* Api.swift in Sources */,
+				222A83C926302E1400DE7FA6 /* ImagesView.swift in Sources */,
+				221D245B2630069200F7C58E /* ImagePicker.swift in Sources */,
+				22DAC8C326315D0800D7816A /* Date.swift in Sources */,
 				22E7B3AD2609CB38003C6020 /* proyectoApp.swift in Sources */,
 				22D8DD4726245D4800C45ED6 /* ListSharedNotesView.swift in Sources */,
 			);

@@ -9,4 +9,5 @@ target 'proyecto' do
 	pod 'Alamofire', '~> 5.4.1'
  pod 'SwiftyJSON', '~> 5.0.1'
 pod 'ToastUI'
+pod 'YPImagePicker'
 end

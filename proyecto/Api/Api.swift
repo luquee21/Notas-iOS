@@ -11,7 +11,6 @@ import SwiftyJSON
 
 struct Api {
   
-    static var loading = false
     static let url = ""
     static let apikey = ""
     static let headers: HTTPHeaders = [
@@ -55,6 +54,160 @@ struct Api {
                 }
         }
     }
+    
+    
+    static func getSharedUsers(_ id_note: String, _ completion: @escaping (Array<User>) -> ()){
+        let finalurl = url + "notes/shared/users/\(id_note)"
+        
+        AF.request(finalurl, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers)
+            .responseJSON{ response in
+                do{
+                    let data = response.data!
+                    let serverResponse = response.response!.statusCode
+                    let json = JSON(data)
+                    let status = json["status"]
+                    let result = json["result"]
+                    if serverResponse == 200 {
+                        if status == "1"{
+                            let users = try encoder.encode(result)
+                            let decode = try decoder.decode([User].self,from: users)
+                            completion(decode)
+                        } else {
+                            completion(Array<User>())
+                        }
+                    } else {
+                        completion(Array<User>())
+                    }
+                } catch{
+                    print(error)
+                }
+        }
+    }
+    
+    static func shareNote(_ user: String,_ id_note: String, _ editable: String, _ completion: @escaping (String) -> ()){
+        let finalurl = url + "notes/shared/to"
+        let params = [
+            "user": user,
+            "id_note": id_note,
+            "edit": editable
+        ]
+        AF.request(finalurl, method: .post, parameters: params, encoding: JSONEncoding.default, headers: headers)
+            .responseJSON{ response in
+                    let data = response.data!
+                    let serverResponse = response.response!.statusCode
+                    let json = JSON(data)
+                    let status = json["status"]
+                    if serverResponse == 200 {
+                        if status == "1"{
+                            completion("")
+                        } else {
+                            completion("No se ha podido compartir la nota")
+                        }
+                    } else {
+                        completion("Error, el servidor no responde")
+                    }
+        }
+    }
+    
+    static func updateNoteTitle(_ id_note: String, _ title: String, _ completion: @escaping (String) -> ()){
+        let finalurl = url + "notes/name/\(id_note)"
+        let params = [
+            "title": title
+        ]
+        print(finalurl)
+        AF.request(finalurl, method: .put, parameters: params, encoding: JSONEncoding.default, headers: headers)
+            .responseJSON{ response in
+                    let data = response.data!
+                    let serverResponse = response.response!.statusCode
+                    let json = JSON(data)
+                    let status = json["status"]
+                    if serverResponse == 200 {
+                        if status == "1"{
+                            completion("")
+                        } else {
+                            completion("No se ha podido actualizar el título de la nota")
+                        }
+                    } else {
+                        completion("Error, el servidor no responde")
+                    }
+        }
+    }
+    
+    
+    static func deleteNote(_ id_note: String, _ completion: @escaping (String) -> ()){
+        let finalurl = url + "notes/\(id_note)"
+        
+        AF.request(finalurl, method: .delete, parameters: nil, encoding: JSONEncoding.default, headers: headers)
+            .responseJSON{ response in
+                    let data = response.data!
+                    let serverResponse = response.response!.statusCode
+                    let json = JSON(data)
+                    let status = json["status"]
+                print(json)
+                    if serverResponse == 200 {
+                        if status == "1"{
+                            completion("")
+                        } else {
+                            completion("No se ha podido borrar la nota ")
+                        }
+                    } else {
+                        completion("Error, el servidor no responde")
+                    }
+               
+        }
+    }
+    
+    
+    static func unShareNoteTo(_ id_note: String,_ user: String,_ actual_user: String, _ completion: @escaping (String) -> ()){
+        let finalurl = url + "notes/\(id_note)/unshared/to/\(user)"
+        
+        AF.request(finalurl, method: .delete, parameters: nil, encoding: JSONEncoding.default, headers: headers)
+            .responseJSON{ response in
+                    let data = response.data!
+                    let serverResponse = response.response!.statusCode
+                    let json = JSON(data)
+                    let status = json["status"]
+                    if serverResponse == 200 {
+                        if status == "1"{
+                            completion("")
+                        } else {
+                            if user.compare(actual_user, options: .caseInsensitive) != .orderedSame {
+                                completion("No se ha podido dejar de compartir con el usuario \(user)")
+                            } else {
+                                completion("No se ha podido dejar de compartir la nota")
+                            }
+                        }
+                    } else {
+                        completion("Error, el servidor no responde")
+                    }
+               
+        }
+    }
+    
+    static func unShareNoteAll(_ id_note: String, _ completion: @escaping (String) -> ()){
+        let finalurl = url + "notes/\(id_note)/unshared/all"
+        
+        AF.request(finalurl, method: .delete, parameters: nil, encoding: JSONEncoding.default, headers: headers)
+            .responseJSON{ response in
+                    let data = response.data!
+                    let serverResponse = response.response!.statusCode
+                    let json = JSON(data)
+                    let status = json["status"]
+
+                    if serverResponse == 200 {
+                        if status == "1"{
+                            completion("")
+                        } else {
+                            completion("No se ha podido dejar de compartir con todos los usuarios")
+                        }
+                    } else {
+                        completion("Error, el servidor no responde")
+                    }
+        }
+    }
+    
+    
+    
     
     static func signIn(_ user: String, _ pass: String, _ completion: @escaping (String) -> ()){
         let finalurl = url + "users"
@@ -113,73 +266,8 @@ struct Api {
         }
     }
     
-    
-    static func getMyNotes(_ user : User, _ completion: @escaping (String, Array<Note>) -> ()){
-        let finalurl = url + "notes/unshared/\(user.id)"
-        var notes: [Note] = []
-        AF.request(finalurl, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers)
-            .responseJSON{ response in
-                do{
-                    let data = response.data!
-                    let serverResponse = response.response!.statusCode
-                    let json = JSON(data)
-                    let status = json["status"]
-                    let result = json["result"]
-                    
-                    
-                    if serverResponse == 200 {
-                        if status == "1"{
-                            let notesencoded = try encoder.encode(result)
-                            notes = try decoder.decode([Note].self, from: notesencoded)
-                            completion("", notes)
-                        } else {
-                            //alert error status
-                            completion("No hay ninguna nota", notes)
-                        }
-                    } else {
-                        //alert error response
-                        completion("Error, el servidor no responde",notes)
-                    }
-                } catch{
-                    print(error)
-                }
-        }
-    }
-    
-    static func getSharedNotes(_ user : User, _ completion: @escaping (String, Array<Note>) -> ()){
-        let finalurl = url + "notes/shared/\(user.id)"
-        var notes: [Note] = []
-        AF.request(finalurl, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers)
-            .responseJSON{ response in
-                do{
-                    let data = response.data!
-                    let serverResponse = response.response!.statusCode
-                    let json = JSON(data)
-                    let status = json["status"]
-                    let result = json["result"]
-                    
-                    
-                    if serverResponse == 200 {
-                        if status == "1"{
-                            let notesencoded = try encoder.encode(result)
-                            notes = try decoder.decode([Note].self, from: notesencoded)
-                            completion("", notes)
-                        } else {
-                            //alert error status
-                            completion("No hay ninguna nota compartida", notes)
-                        }
-                    } else {
-                        //alert error response
-                        completion("Error, el servidor no responde",notes)
-                    }
-                } catch{
-                    print(error)
-                }
-        }
-    }
-    
     static func createNote(_ user : User, _ title: String ,_ completion: @escaping (String, Bool) -> ()){
-        let finalurl = url + "notes/\(user.id)"
+        let finalurl = url + "notes/\(user.id!)"
         let  parameters = [
             "title" : title
         ]

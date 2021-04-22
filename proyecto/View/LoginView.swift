@@ -9,8 +9,7 @@ import SwiftUI
 import ToastUI
 
 struct LoginView: View {
-    @ObservedObject var userAuth: UserAuth
-    @ObservedObject var notes = NoteRepository()
+    @EnvironmentObject var userRepository: UserRepository
     @State private var foo: String? = nil
     @State private var user: String = ""
     @State private var pass: String = ""
@@ -110,7 +109,7 @@ struct LoginView: View {
                 self.hide.toggle()
                 self.isLogin = false
                 if(result.id != -1){
-                    self.userAuth.authorize(result)
+                    self.userRepository.authorize(result)
                 } else {
                     self.msg = message
                     self.showingToast.toggle()
@@ -120,12 +119,7 @@ struct LoginView: View {
 
 }
 
-struct LoginView_Previews: PreviewProvider {
-    static var previews: some View {
-        LoginView(userAuth: UserAuth())
-    }
-}
-    
+
 
 
 

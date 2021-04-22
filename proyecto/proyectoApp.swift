@@ -10,13 +10,13 @@ import SwiftUI
 
 @main
 struct proyectoApp : App{
-    @StateObject var userAuth = UserAuth()
+    @StateObject var userRepository: UserRepository = UserRepository()
     var body: some Scene{
         WindowGroup{
-            if userAuth.isAuthorized {
-                MainView(userAuth: userAuth)
+            if userRepository.isAuthorized {
+                MainView().environmentObject(userRepository).animation(Animation.spring().speed(1.0)).transition(.move(edge: .trailing))
             } else {
-                LoginView(userAuth: userAuth)
+                LoginView().environmentObject(userRepository)
             }
         }
     }

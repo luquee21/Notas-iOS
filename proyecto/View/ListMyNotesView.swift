@@ -9,22 +9,44 @@ import SwiftUI
 import ToastUI
 
 struct ListMyNotesView: View {
-    @ObservedObject var userAuth: UserAuth = UserAuth()
-    @ObservedObject var notes: NoteRepository = NoteRepository()
+    @EnvironmentObject var userRepository: UserRepository
     @State var showingToast: Bool = false
     @State var hide: Bool = true
     @State var title: String = ""
+    @State var isLoading: Bool = true
+    let picker: ImagePicker
     
     var body: some View {
         NavigationView{
             ScrollView{
-                LazyVStack{
-                    ForEach(0..<notes.myNotes.count,id: \.self){i in
-                        NavigationLink(destination: NoteView(note: self.notes.myNotes[i], index: i, userAuth: userAuth, noteRepository: notes)){
-                            RowNoteView(note: self.notes.myNotes[i])
-                        }
+                Refresher(coordinateSpace: .named("Refresher"), isLoaded: $userRepository.isLoadedMyNotes) {
+                    self.userRepository.refresh(.mynotes)
+                }
+                
+                LazyVStack(alignment: .leading){
+                    if userRepository.myNotes.isEmpty {
+                        Text("No hay ninguna nota creada")
+                            .font(.title)
+                            .padding(.top, 15)
+                    }
+                    ForEach(0..<userRepository.myNotes.count,id: \.self){i in
+                        NavigationLink(destination: NoteView(note: userRepository.myNotes[i], index: i, picker: picker, userRepository: userRepository)){
+                            RowNoteView(note: self.userRepository.myNotes[i],isLast: i == self.userRepository.myNotes.count - 1,userRepository: userRepository)
+                                .onAppear{
+                                    if i == userRepository.myNotes.count - 1  && i >= userRepository.limitPerPage-1 {
+                                        self.userRepository.isLoadedMyNotes = false
+                                        if self.userRepository.countMyNotes != -1{
+                                            self.userRepository.countMyNotes += 1
+                                            self.userRepository.getMyNotes()
+                                        } else {
+                                            self.userRepository.isLoadedMyNotes = true
+                                        }
+                                    }
+                                }
+                        }.foregroundColor(.white)
                     }
                 }
+                .padding()
             }
             .navigationBarTitle("Mis notas")
             .toolbar{
@@ -45,52 +67,37 @@ struct ListMyNotesView: View {
                 }
             }
           
+          
             .toast(isPresented: $showingToast){
-                CustomToastView(title: "Añadir nota", message: "Introduce el título de la nota", negativeButton: "Cancelar", positiveButton: "Añadir", textField: $title, showingToast: $showingToast){
+                CustomToastView(title: "Añadir nota", message: "Introduce el título de la nota", negativeButton: "Cancelar", positiveButton: "Añadir", textField: $title, showingToast: $showingToast, edit: $showingToast, isSharing: false){
                     addNote()
                 }
             }
+    
+            
         }
         
     }
     
-    init(){
-        getNotes()
-    }
     
     func addNote(){
         self.hide = false
-        if title.count <= 70{
-            
-            Api.createNote(userAuth.getUser(), title) { text, bool in
+        if title.count <= 50{
+            Api.createNote(userRepository.getUser(), title) { text, bool in
                 self.hide = true
                 if bool {
-                    getNotes()
+                    userRepository.refresh(MainView.tabs.mynotes)
                     //alert de exito?
                 } else {
                     //alert error
                 }
             }
         } else {
-            // alert no puede tener mas de 70 caracteres
+            // alert no puede tener mas de 50 caracteres
         }
         
     }
     
-    func deleteNote(){
-        
-    }
-    
-    
-    func getNotes(){
-        Api.getMyNotes(userAuth.getUser()){text,list in
-            if !list.isEmpty{
-                notes.myNotes = list
-            } else {
-                //Mostrar toast
-            }
-        }
-    }
 }
 
 

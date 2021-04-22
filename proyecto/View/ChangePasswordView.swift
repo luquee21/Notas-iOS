@@ -11,7 +11,7 @@ struct ChangePasswordView: View {
     @State private var pass: String = ""
     @State private var pass2: String = ""
     @State private var changingPassword: Bool = false
-    @ObservedObject var userAuth: UserAuth
+    @ObservedObject var userRepository: UserRepository
     @Environment(\.presentationMode) var presentationMode
     var body: some View {
         VStack(alignment: .center){
@@ -61,10 +61,10 @@ struct ChangePasswordView: View {
     func changePassword(){
         if self.pass.compare(self.pass2, options: .caseInsensitive) == .orderedSame  {
             if pass.count >= 8 {
-                Api.updatePassword(String(self.userAuth.getUser().id), self.pass){ text in
+                Api.updatePassword(String(self.userRepository.getUser().id!), self.pass){ text in
                     if text.isEmpty {
                         self.presentationMode.wrappedValue.dismiss()
-                        self.userAuth.deauthorize()
+                        self.userRepository.deauthorize()
                     } else {
                         //alert error al cambiar contraseña
                     }

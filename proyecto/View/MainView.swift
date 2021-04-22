@@ -9,8 +9,8 @@ import SwiftUI
 
 struct MainView: View {
     @State private var selected: tabs = .mynotes
-    @ObservedObject var userAuth: UserAuth
-    
+    @EnvironmentObject var userRepository: UserRepository
+    let picker = ImagePicker()
     enum tabs {
         case mynotes
         case sharednotes
@@ -19,19 +19,19 @@ struct MainView: View {
     
     var body: some View {
         TabView(selection: $selected){
-            ListMyNotesView()
+            ListMyNotesView(picker: picker).environmentObject(userRepository)
                 .tabItem {
                     Image(systemName: "1.circle")
                     Text("Mis notas")
                 }
                 .tag(tabs.mynotes)
-            ListSharedNotesView()
+            ListSharedNotesView(picker: picker).environmentObject(userRepository)
                 .tabItem {
                     Image(systemName: "2.circle")
                     Text("Notas compartidas")
                 }
                     .tag(tabs.sharednotes)
-            ProfileView(userAuth: userAuth)
+            ProfileView().environmentObject(userRepository)
                     .tabItem {
                         Image(systemName: "3.circle")
                         Text("Perfil")

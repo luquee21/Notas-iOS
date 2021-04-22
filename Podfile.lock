@@ -1,24 +1,36 @@
 PODS:
   - Alamofire (5.4.1)
+  - PryntTrimmerView (4.0.2)
+  - SteviaLayout (4.7.3)
   - SwiftyJSON (5.0.1)
   - ToastUI (2.0.0)
+  - YPImagePicker (4.5.0):
+    - PryntTrimmerView (~> 4.0.2)
+    - SteviaLayout (~> 4.7.3)
 
 DEPENDENCIES:
   - Alamofire (~> 5.4.1)
   - SwiftyJSON (~> 5.0.1)
   - ToastUI
+  - YPImagePicker
 
 SPEC REPOS:
   trunk:
     - Alamofire
+    - PryntTrimmerView
+    - SteviaLayout
     - SwiftyJSON
     - ToastUI
+    - YPImagePicker
 
 SPEC CHECKSUMS:
   Alamofire: 2291f7d21ca607c491dd17642e5d40fdcda0e65c
+  PryntTrimmerView: 6a43cc90df5d99addeabd33d4ba09b1365322130
+  SteviaLayout: c2ecdcff57d44e38fd2f65e54ad52aeae28ca0c4
   SwiftyJSON: 2f33a42c6fbc52764d96f13368585094bfd8aa5e
   ToastUI: 391eb9a1cc15e7ef4b79ee112e4a0b969259154f
+  YPImagePicker: 6f410f475bd22fa8cd430495b54d4b2f15865c2d
 
-PODFILE CHECKSUM: 4c8cadbd716ce8aebcdea15316d18ab453460b6e
+PODFILE CHECKSUM: d11c43d392040a717aee9e199363ac6616bc3011
 
 COCOAPODS: 1.10.1

@@ -11,13 +11,13 @@ struct ProfileView: View {
     @State private var showingAlert = false
     @State private var showDetail = false
     @State private var isPresented = false
-    @ObservedObject var userAuth: UserAuth
+    @EnvironmentObject var userRepository: UserRepository
     var body: some View {
                     List{
                         HStack{
                             Text("Usuario")
                             Divider()
-                            Text(userAuth.getUser().user)
+                            Text(userRepository.getUser().user)
                         }
                         Button(action: {
                             self.isPresented.toggle()
@@ -39,7 +39,7 @@ struct ProfileView: View {
                                 secondaryButton:  .destructive(
                                     Text("Cerrar sesión")
                                 ){
-                                        userAuth.deauthorize()
+                                    userRepository.deauthorize()
                                             
                                 }
                                 
@@ -47,7 +47,7 @@ struct ProfileView: View {
                         }
                 }
                     .sheet(isPresented: $isPresented){
-                        ChangePasswordView(userAuth: userAuth)
+                        ChangePasswordView(userRepository: userRepository)
                     }
         }
     }
