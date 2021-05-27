@@ -6,29 +6,40 @@
 //
 
 import SwiftUI
+import SwURL
 
 struct ImagesView: View {
-    let images: Array<UIImage>
+    @Binding var note: Note
     @Binding var i: Int
     @State var showDeleteImage: Bool = false
     @Environment(\.presentationMode) var presentationMode
     var body: some View {
         NavigationView {
             VStack{
-                TabView(selection: $i){
-                    ForEach(0..<images.count) { i in
-                        Image(uiImage: images[i])
-                            .resizable()
-                            .scaledToFill()
-                            .tag(i)
-                           
+                
+                if note.images != nil && !note.images!.isEmpty{
+                    TabView(selection: $i){
+                        ForEach(0..<note.images!.count) { i in
+                            RemoteImageView(
+                                url:  URL(string: "\(Api.urlImage)\(note.images![i].photo)")!
+                                        ).imageProcessing({ image in
+                                            return image
+                                                .resizable()
+                                                .frame(width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height/2)
+                                                .tag(i)
+
+                                        })
+                                
+                        }
                             
                     }
-                   
-                        
+                    .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
+                    .padding()
+                } else {
+                    Text("No hay ninguna imágen en la nota")
+                        .bold()
                 }
-                .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
-                .padding()
+               
             }
             .toolbar{
                ToolbarItem(placement: .navigationBarLeading){
@@ -43,7 +54,7 @@ struct ImagesView: View {
                    Button(action: {
                        
                    }, label: {
-                       Text("\(i+1) de \(images.count)")
+                    Text("\(i+1) de \(note.images!.count)")
                    })
                }
                 

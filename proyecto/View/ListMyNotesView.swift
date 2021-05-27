@@ -22,15 +22,15 @@ struct ListMyNotesView: View {
                 Refresher(coordinateSpace: .named("Refresher"), isLoaded: $userRepository.isLoadedMyNotes) {
                     self.userRepository.refresh(.mynotes)
                 }
-                
                 LazyVStack(alignment: .leading){
                     if userRepository.myNotes.isEmpty {
                         Text("No hay ninguna nota creada")
                             .font(.title)
                             .padding(.top, 15)
                     }
-                    ForEach(0..<userRepository.myNotes.count,id: \.self){i in
-                        NavigationLink(destination: NoteView(note: userRepository.myNotes[i], index: i, picker: picker, userRepository: userRepository)){
+                    
+                    ForEach(userRepository.myNotes.indices, id: \.self){i in
+                        NavigationLink(destination: NoteView(note: $userRepository.myNotes[i], index: i, picker: picker, userRepository: userRepository)){
                             RowNoteView(note: self.userRepository.myNotes[i],isLast: i == self.userRepository.myNotes.count - 1,userRepository: userRepository)
                                 .onAppear{
                                     if i == userRepository.myNotes.count - 1  && i >= userRepository.limitPerPage-1 {
@@ -45,6 +45,7 @@ struct ListMyNotesView: View {
                                 }
                         }.foregroundColor(.white)
                     }
+                    
                 }
                 .padding()
             }

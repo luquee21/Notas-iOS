@@ -11,8 +11,9 @@ import SwiftyJSON
 
 struct Api {
   
-    static let url = ""
-    static let apikey = ""
+    static let url = "https://luque21.duckdns.org:4081/notas/"
+    static let urlImage = "https://luque21.duckdns.org:4081/image/"
+    static let apikey = "idisjfsd8fy84ropwqm,fycg76xz<cOIHSAIjssjjjjs23NDJFEQUYR**3214"
     static let headers: HTTPHeaders = [
         "apikey": apikey,
     ]
@@ -62,7 +63,7 @@ struct Api {
         AF.request(finalurl, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers)
             .responseJSON{ response in
                 do{
-                    let data = response.data!
+                    let data = try? response.data!
                     let serverResponse = response.response!.statusCode
                     let json = JSON(data)
                     let status = json["status"]
@@ -77,6 +78,35 @@ struct Api {
                         }
                     } else {
                         completion(Array<User>())
+                    }
+                } catch{
+                    print(error)
+                }
+        }
+    }
+    
+    
+    static func getPhotos(_ id_note: Int, _ completion: @escaping (ImageModel, String) -> ()){
+        let finalurl = url + "notes/photos/\(id_note)"
+        
+        let image = ImageModel()
+        AF.request(finalurl, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers)
+            .responseJSON{ response in
+                print(response)
+                do{
+                    let data = try? response.data!
+                    let serverResponse = response.response!.statusCode
+                    let json = JSON(data)
+                    let status = json["status"]
+                    if serverResponse == 200 {
+                        if status == "1"{
+                            let decode = try decoder.decode(ImageModel.self,from: data!)
+                            completion(decode, "")
+                        } else {
+                            completion(image, "Error al cargar las fotos")
+                        }
+                    } else {
+                        completion(image, "Error al cargar las fotos")
                     }
                 } catch{
                     print(error)
@@ -303,8 +333,6 @@ struct Api {
             "content" : content
         ]
         
-        debugPrint(params)
-        debugPrint(id_note)
 
         AF.request(finalurl, method: .put, parameters: params, encoding: JSONEncoding.default, headers: headers)
             .responseJSON{ response in
@@ -318,6 +346,35 @@ struct Api {
                         } else {
                             //alert error status
                             completion("No se ha podido guardar la nota")
+                        }
+                    } else {
+                        //alert error response
+                        completion("Error, el servidor no responde")
+                    }
+        }
+    }
+    
+
+    
+    static func uploadPhoto(_ image: UIImage, _ id_user: Int,_ id_note: Int, _ completion: @escaping (String) -> ()){
+        let finalurl = url + "notes/\(id_note)/user/\(id_user)/photo"
+        let multipartFormData: MultipartFormData = MultipartFormData()
+        multipartFormData.append(image.jpegData(compressionQuality: 0.9)!, withName: "photo", fileName: "\(image).jpeg", mimeType: "image/jpeg")
+
+    
+        AF.upload(multipartFormData: multipartFormData,
+                  to: finalurl , method: .post, headers: headers)
+            .responseJSON{ response in
+                    let serverResponse = response.response!.statusCode
+                    let data = response.data!
+                    let json = JSON(data)
+                    let status = json["status"]
+                    if serverResponse == 200 {
+                        if status == "1"{
+                            completion("")
+                        } else {
+                            //alert error status
+                            completion("No se ha podido subir la foto")
                         }
                     } else {
                         //alert error response

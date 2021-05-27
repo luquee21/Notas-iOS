@@ -14,7 +14,7 @@ struct proyectoApp : App{
     var body: some Scene{
         WindowGroup{
             if userRepository.isAuthorized {
-                MainView().environmentObject(userRepository).animation(Animation.spring().speed(1.0)).transition(.move(edge: .trailing))
+                MainView().environmentObject(userRepository)
             } else {
                 LoginView().environmentObject(userRepository)
             }

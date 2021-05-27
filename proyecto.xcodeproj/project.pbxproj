@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -19,10 +19,12 @@
 		22BA823D260B652600111A85 /* Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BA823C260B652600111A85 /* Api.swift */; };
 		22BA8240260B66F800111A85 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BA823F260B66F800111A85 /* ProfileView.swift */; };
 		22BA8246260B76D200111A85 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BA8245260B76D200111A85 /* MainView.swift */; };
+		22C1B0D4265C0DDB0087C1A4 /* ImageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C1B0D3265C0DDB0087C1A4 /* ImageModel.swift */; };
+		22D72175263195B10022D4F4 /* ImageRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D72174263195B10022D4F4 /* ImageRowView.swift */; };
 		22D8DD4726245D4800C45ED6 /* ListSharedNotesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D8DD4626245D4800C45ED6 /* ListSharedNotesView.swift */; };
 		22DAC8C326315D0800D7816A /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DAC8C226315D0800D7816A /* Date.swift */; };
-		22DAC8CA2631698B00D7816A /* DateAgo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22DAC8C92631698B00D7816A /* DateAgo.swift */; };
 		22E24E802628553B00B04BDA /* CustomToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E24E7F2628553B00B04BDA /* CustomToastView.swift */; };
+		22E3481E2655690F002F6789 /* SwURL in Frameworks */ = {isa = PBXBuildFile; productRef = 22E3481D2655690F002F6789 /* SwURL */; };
 		22E7B3AD2609CB38003C6020 /* proyectoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E7B3AC2609CB38003C6020 /* proyectoApp.swift */; };
 		22E7B3AF2609CB38003C6020 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22E7B3AE2609CB38003C6020 /* LoginView.swift */; };
 		22E7B3B42609CB3A003C6020 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22E7B3B32609CB3A003C6020 /* Preview Assets.xcassets */; };
@@ -49,9 +51,10 @@
 		22BA823C260B652600111A85 /* Api.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Api.swift; sourceTree = "<group>"; };
 		22BA823F260B66F800111A85 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		22BA8245260B76D200111A85 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		22C1B0D3265C0DDB0087C1A4 /* ImageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageModel.swift; sourceTree = "<group>"; };
+		22D72174263195B10022D4F4 /* ImageRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageRowView.swift; sourceTree = "<group>"; };
 		22D8DD4626245D4800C45ED6 /* ListSharedNotesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListSharedNotesView.swift; sourceTree = "<group>"; };
 		22DAC8C226315D0800D7816A /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
-		22DAC8C92631698B00D7816A /* DateAgo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateAgo.swift; sourceTree = "<group>"; };
 		22E24E7F2628553B00B04BDA /* CustomToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomToastView.swift; sourceTree = "<group>"; };
 		22E7B3A92609CB38003C6020 /* proyecto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = proyecto.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		22E7B3AC2609CB38003C6020 /* proyectoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = proyectoApp.swift; sourceTree = "<group>"; };
@@ -75,6 +78,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				22E3481E2655690F002F6789 /* SwURL in Frameworks */,
 				2C2FFAC883CD706812D26490 /* Pods_proyecto.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -97,7 +101,6 @@
 			children = (
 				22EE5643262EC164004BB6AC /* Refresher.swift */,
 				221D245A2630069200F7C58E /* ImagePicker.swift */,
-				22DAC8C92631698B00D7816A /* DateAgo.swift */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -159,6 +162,7 @@
 				22E7B3E3260A083C003C6020 /* Note.swift */,
 				22E7B3E7260A0991003C6020 /* User.swift */,
 				223C912D261C559B0076086B /* UserRepository.swift */,
+				22C1B0D3265C0DDB0087C1A4 /* ImageModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -178,6 +182,7 @@
 				22E24E7F2628553B00B04BDA /* CustomToastView.swift */,
 				2203287D262978D600313D60 /* SharedUsersView.swift */,
 				222A83C826302E1400DE7FA6 /* ImagesView.swift */,
+				22D72174263195B10022D4F4 /* ImageRowView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -225,6 +230,9 @@
 			dependencies = (
 			);
 			name = proyecto;
+			packageProductDependencies = (
+				22E3481D2655690F002F6789 /* SwURL */,
+			);
 			productName = proyecto;
 			productReference = 22E7B3A92609CB38003C6020 /* proyecto.app */;
 			productType = "com.apple.product-type.application";
@@ -252,6 +260,9 @@
 				Base,
 			);
 			mainGroup = 22E7B3A02609CB38003C6020;
+			packageReferences = (
+				22E3481C2655690F002F6789 /* XCRemoteSwiftPackageReference "SwURL" */,
+			);
 			productRefGroup = 22E7B3AA2609CB38003C6020 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -321,9 +332,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				22DAC8CA2631698B00D7816A /* DateAgo.swift in Sources */,
 				228B6F94261B1E02008DBE5A /* View.swift in Sources */,
+				22C1B0D4265C0DDB0087C1A4 /* ImageModel.swift in Sources */,
 				22BA8240260B66F800111A85 /* ProfileView.swift in Sources */,
+				22D72175263195B10022D4F4 /* ImageRowView.swift in Sources */,
 				221626E2260CBC2D008731D8 /* ChangePasswordView.swift in Sources */,
 				22E7B3E4260A083C003C6020 /* Note.swift in Sources */,
 				22E7B3C52609E3D9003C6020 /* SignInView.swift in Sources */,
@@ -534,6 +546,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		22E3481C2655690F002F6789 /* XCRemoteSwiftPackageReference "SwURL" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/cmtrounce/SwURL";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		22E3481D2655690F002F6789 /* SwURL */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 22E3481C2655690F002F6789 /* XCRemoteSwiftPackageReference "SwURL" */;
+			productName = SwURL;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 22E7B3A12609CB38003C6020 /* Project object */;
 }

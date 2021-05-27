@@ -21,19 +21,19 @@ struct MainView: View {
         TabView(selection: $selected){
             ListMyNotesView(picker: picker).environmentObject(userRepository)
                 .tabItem {
-                    Image(systemName: "1.circle")
+                    Image(systemName: "note")
                     Text("Mis notas")
                 }
                 .tag(tabs.mynotes)
             ListSharedNotesView(picker: picker).environmentObject(userRepository)
                 .tabItem {
-                    Image(systemName: "2.circle")
+                    Image(systemName: "square.and.arrow.up.fill")
                     Text("Notas compartidas")
                 }
                     .tag(tabs.sharednotes)
             ProfileView().environmentObject(userRepository)
                     .tabItem {
-                        Image(systemName: "3.circle")
+                        Image(systemName: "person.crop.circle")
                         Text("Perfil")
                     }
                     .tag(tabs.profile)

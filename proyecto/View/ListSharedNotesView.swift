@@ -23,8 +23,9 @@ struct ListSharedNotesView: View {
                                 .font(.title)
                                 .padding(.top, 15)
                         }
-                        ForEach(0..<userRepository.sharedNotes.count, id: \.self){ i in
-                            NavigationLink(destination: NoteView(note: userRepository.sharedNotes[i], index: i, picker: picker, userRepository: userRepository)){
+                    
+                        ForEach(userRepository.sharedNotes.indices, id: \.self){ i in
+                            NavigationLink(destination: NoteView(note: $userRepository.sharedNotes[i], index: i, picker: picker, userRepository: userRepository)){
                                 RowNoteView(note: userRepository.sharedNotes[i],isLast: i == self.userRepository.sharedNotes.count - 1,userRepository: userRepository)
                                     .onAppear{
                                         //Compruebo que es el último del array de notas compartidas
@@ -42,6 +43,7 @@ struct ListSharedNotesView: View {
                         }.foregroundColor(.white)
             
                     }
+                    
                 }.navigationBarTitle("Notas compartidas")
                     .padding()
             }

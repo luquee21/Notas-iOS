@@ -5,15 +5,16 @@
 //  Created by macOS on 23/3/21.
 //
 
+
 import SwiftUI
 import ToastUI
 import YPImagePicker
 
 struct NoteView: View {
-    let note : Note
+    @Binding var note : Note
     let index: Int
     let picker: ImagePicker
-    @State var images: Array<UIImage> = []
+    @State var date = Date()
     @State var i: Int = 0
     @State var oldContent: String = ""
     @State var content: String = ""
@@ -39,36 +40,21 @@ struct NoteView: View {
     @State var user_to_share: String = ""
     @State var user_to_unshare: String = ""
     @State var usersShared: Array<User> = []
+    @State var images: Array<UIImage> = []
     @ObservedObject var userRepository: UserRepository
     @Environment(\.presentationMode) var presentationMode
     var body: some View {
-        VStack{
-                /*
-                if !images.isEmpty {
-                    ForEach(0..<images.count, id: \.self){i in
-                        Image(uiImage: images[i])
-                            .resizable()
-                            .scaledToFill()
-                            .frame(width: 300, height: 400)
-                            .onTapGesture{
-                                self.i = i
-                                showImages.toggle()
-                            }
-                            .onLongPressGesture{
-                                showAlert = true
-                                showDeleteImage = true
-                            }
-                         
-                    }
-                }
- */
+        VStack{                              
                 TextEditor(text: $content)
                     .disabled(note.editable == 0 || !canEdit)
-                    .onAppear(){
-                        getSharedUsers()
+                    .onAppear{
+                        if note.shared == 1 {
+                            getSharedUsers()
+                        }
                         title = note.title
-                        content = note.content
+                        content = note.content ?? ""
                         oldContent = content
+                        getPhotos()
                     }
                     .padding(.horizontal, 5)
             }
@@ -91,12 +77,13 @@ struct NoteView: View {
                 }
             }
             
-            .fullScreenCover(isPresented: $showImages){
-                ImagesView(images: images, i: $i)
+            .sheet(isPresented: $showInfoShared){
+                SharedUsersView(users: userRepository.sharedNotes[index].users_share_note!)
             }
-        .sheet(isPresented: $showInfoShared){
-            SharedUsersView(users: userRepository.sharedNotes[index].users_share_note!)
-        }
+            .sheet(isPresented: $showImages){
+                ImageRowView(note: $note)
+            }
+            
             .toolbar{
                 ToolbarItemGroup(placement: .bottomBar){
                     Button(action: {
@@ -115,8 +102,13 @@ struct NoteView: View {
                     })
                     
                     Spacer()
-                    
-
+                    Button(action: {
+                        showImages.toggle()
+                    }, label: {
+                        Image(systemName: "list.bullet")
+                    })
+                   
+                    Spacer()
                     Button(action: {
                         getPhoto()
                     }, label: {
@@ -176,10 +168,10 @@ struct NoteView: View {
             } else if (showInfo){
                 if (note.shared == 1) {
                     alert = Alert(title: Text("Información"), message:
-                                    Text("Creado por: \(note.user) \n Últ. vez modificado por: \(note.modified_by) hace \(note.date) \n Creado: \(note.date_creation)"))
+                                    Text("Creado por: \(note.user) \n Últ. vez modificado por: \(note.modified_by) el \(date.stringToDate(note.date)) \n Creado: \(date.stringToDate(note.date_creation))"))
                 } else {
                     alert = Alert(title: Text("Información"), message:
-                    Text("Creado por: \(note.user) \n Creado: \(note.date_creation)"))
+                    Text("Creado por: \(note.user) \n Creado: \(date.stringToDate(note.date_creation))"))
                 }
             } else if showDeleteImage {
                 alert = Alert(title: Text("Borrar"), message: Text("¿Desea borrar la foto?"), primaryButton: .default(Text("Cancelar")){showDeleteImage = false}, secondaryButton:  .destructive(Text("Borrar")){
@@ -197,15 +189,26 @@ struct NoteView: View {
     func getPhoto(){
         let picker = self.picker.getPicker()
         picker.didFinishPicking { [unowned picker] items, _ in
-            print(items)
             if let photo = items.singlePhoto {
-                images.append(photo.image)
+                uploadPhoto(photo.image)
             }
             picker.dismiss(animated: true, completion: nil)
         }
         self.picker.rootViewController().present(picker, animated: true, completion: nil)
     }
     
+    
+    func uploadPhoto(_ image: UIImage){
+        Api.uploadPhoto(image, userRepository.user.id!, note.id){error in
+            if error.isEmpty{
+                print("Foto subida")
+                getPhotos()
+            } else {
+                //error
+                print("Foto no subida")
+            }
+        }
+    }
     
     
     func getSharedUsers(){
@@ -373,6 +376,14 @@ struct NoteView: View {
         }
     }
     
+    func getPhotos(){   
+        Api.getPhotos(note.id){image, error in
+            if error.isEmpty{
+                self.note.images = image.result!
+            }
+        }
+    }
+    
 
     
     func closeView(){
@@ -422,4 +433,5 @@ struct NoteView: View {
 
    
 }
+
 

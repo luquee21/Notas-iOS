@@ -81,12 +81,14 @@ class UserRepository: ObservableObject {
         let finalurl = Api.url + "notes/unshared/\(self.user.id!)/page/\(countMyNotes)"
         AF.request(finalurl, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: Api.headers)
             .responseJSON{ response in
+                print(response)
                 do{
-                    let data = response.data!
+                    let data = try? response.data!
                     let serverResponse = response.response!.statusCode
                     let json = JSON(data)
                     let status = json["status"]
                     let result = json["result"]
+                    print(response)
                     if serverResponse == 200 {
                         if status == "1"{
                             let notesencoded = try Api.encoder.encode(result)
@@ -151,15 +153,11 @@ class UserRepository: ObservableObject {
                     if serverResponse == 200 {
                         if status == "1"{
                             let notesencoded = try Api.encoder.encode(result)
-                            var notes = try Api.decoder.decode([Note].self, from: notesencoded)
+                            let notes = try Api.decoder.decode([Note].self, from: notesencoded)
                             if notes.isEmpty {
                                 //Para que no haga el infinite scroll
                                 self.countSharedNotes = -1
                             } else {
-                                for var note in notes {
-                                    note.date = DateAgo.getTimeAgo(note.date)
-                                    note.date_creation = DateAgo.getTimeAgo(note.date_creation)
-                                }
                                 if self.isRefreshingSharedNotes {
                                     self.sharedNotes = notes
                                 } else {

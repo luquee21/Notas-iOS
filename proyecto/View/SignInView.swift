@@ -30,7 +30,6 @@ struct SignInView: View {
                     .disableAutocorrection(true)
                     .border(Color(UIColor.separator))
                     .textFieldStyle(RoundedBorderTextFieldStyle())
-
                 
                 Text("Contraseña")
                     .font(.headline)

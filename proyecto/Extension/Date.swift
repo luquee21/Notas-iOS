@@ -6,22 +6,34 @@
 //
 
 import Foundation
-
+import SwiftUI
 
 extension Date {
-    func timeAgoDisplay() -> String {
-        let formatter = DateComponentsFormatter()
-        formatter.unitsStyle = .full
-        formatter.allowedUnits = [.year, .month, .day, .hour, .minute]
-        formatter.zeroFormattingBehavior = .dropAll
-        return String(format: formatter.string(from: self, to: Date()) ?? "", locale: .current)
-    }
+        func dateToStringFormatted(_ date: Date) -> String {
+            let date2 = self.dateTo(date, "dd/MM/yyyy")
+            let hourAndMinute = self.dateTo(date,"HH:mm")
+            return "\(date2) a las \(hourAndMinute)"
+        }
     
     
-    func localTime() -> Date {
-        let timezone = TimeZone.current
-        let seconds = TimeInterval(timezone.secondsFromGMT(for: self))
-        return Date(timeInterval: seconds, since: self)
-        
+    func dateTo(_ date: Date, _ format : String) -> String {
+        let formatter = DateFormatter()
+        formatter.locale = .autoupdatingCurrent
+        formatter.calendar = .autoupdatingCurrent
+        formatter.dateFormat = format
+        return formatter.string(from: date)
     }
-}
+    
+        func stringToDate(_ date: String) -> String {
+            let formatter = DateFormatter()
+            formatter.locale = .autoupdatingCurrent
+            formatter.calendar = .autoupdatingCurrent
+            formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+            return dateToStringFormatted(formatter.date(from: date)!)
+            
+        }
+
+
+    }
+
+
